@@ -1,0 +1,82 @@
+﻿@viewModel Pozadavky.ViewModels.PozadavekViewModel, Pozadavky
+@masterPage Views/app.dotmaster
+
+<dot:Content ContentPlaceHolderID="PageContent">
+
+    <h2 class="text-center">Detail požadavku</h2>
+
+    <div class="form wrapper">
+
+        <div class="form-group">
+            <label class="control-label">Title</label>
+            <div>
+                <dot:TextBox class="form-control" Text="{value: PozadavekData.Popis}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Jednotka</label>
+            <div>
+                <dot:TextBox class="form-control" Text="{value: PozadavekData.Jednotka}" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Cena za jednotku</label>
+            <div>
+                <dot:TextBox class="form-control" Text="{value: PozadavekData.CenaZaJednotku}" Changed="{command: Prepocitat()}" ValueType="Number"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Množství</label>
+            <div>
+                <dot:TextBox class="form-control" Text="{value: PozadavekData.Mnozstvi}" Changed="{command: Prepocitat()}" ValueType="Number"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Celková cena</label>
+            <div>
+                <dot:TextBox class="form-control" Text="{value: PozadavekData.CelkovaCena}" ValueType="Number" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Měna</label>
+            <div>
+                <!--<dot:TextBox class="form-control" Text="{value: PozadavekData.Mena}" ValueType="Number" />-->
+                <dot:ComboBox DataSource="{value: MenaList}"
+                              SelectedValue="{value: PozadavekData.Mena}" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Dodavatel</label>
+            <div>
+                <dot:ComboBox DataSource="{value: Dodavatele}"
+                              SelectedValue="{value: PozadavekData.DodavatelId}"
+                              ValueMember="ID"
+                              DisplayMember="Nazev"                              
+                              class="form-control"
+                               />                     
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Datum objednání</label>
+            <div>
+                <dot:TextBox class="form-control" Text="{value: PozadavekData.DatumObjednani}" FormatString="d" ValueType="DateTime"  Type="Date"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Termín dodání</label>
+            <div>
+                <dot:TextBox class="form-control" Text="{value: PozadavekData.TerminDodani}" FormatString="d" ValueType="DateTime"  Type="Date"/>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center">
+        <p> ItemId = {{value: ParrentItemId}}</p>
+        <dot:Button class="btn btn-primary" Text="Save" Click="{command: Save()}" />
+        <dot:RouteLink class="btn btn-default" Text="Cancel" RouteName="PozadavkyList" Param-Id="{value: ParrentItemId}" />    
+    </div>
+
+</dot:Content>
+

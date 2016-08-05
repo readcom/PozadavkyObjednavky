@@ -1,0 +1,55 @@
+﻿@viewModel Pozadavky.ViewModels.AppViewModel, Pozadavky
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Default.css" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Main.css" />
+    <title>Požadavky - Objednávky</title>
+</head>
+<body>
+    <header>
+        
+        <dot:RouteLink RouteName="Default">
+            <h1><span class="glyphicon glyphicon-list-alt"></span> Požadavky a objednávky</h1>
+        </dot:RouteLink>
+        
+        <!--<dot:LinkButton class="header-item" Click="{command: ShowDemandPopup(null)}" Validation.Enabled="false">
+            <span class="glyphicon glyphicon-plus"></span> Nový požadavek
+        </dot:LinkButton>-->
+
+        
+        <dot:RouteLink RouteName="newdemand" class="{value: 'header-item ' + (ActivePage == 'newdemand' ? 'header-item-active' : '')}">
+            <span class="glyphicon glyphicon-plus"></span> Nový požadavek
+        </dot:RouteLink>
+
+        <dot:RouteLink RouteName="manager" class="{value: 'header-item ' + (ActivePage == 'manager' ? 'header-item-active' : '')}">
+            <span class="glyphicon glyphicon-tasks"></span> Správa požadavků
+        </dot:RouteLink>
+
+        <dot:RouteLink RouteName="sign" Text="Podpis požadavků" class="{value: 'header-item ' + (ActivePage == 'sign' ? 'header-item-active' : '')}">
+            <span class="glyphicon glyphicon-pencil"></span> Podpis požadavků
+        </dot:RouteLink>
+
+        <span class="glyphicon glyphicon-user header-item" style="float:right"> {{value: ActiveUser}}</span>
+
+    </header>
+
+   
+   
+
+    <!-- obsah dalsich stranek -->
+
+    <dot:ContentPlaceHolder ID="PageContent">
+        <p>zavedeni Hlavni page se nezdarilo!!</p>
+    </dot:ContentPlaceHolder>
+
+      <p>{{value: Text}}</p>
+</body>
+</html>
+
+

@@ -1,0 +1,95 @@
+﻿@viewModel Pozadavky.ViewModels.NewdemandViewModel, Pozadavky
+@masterPage Views/app.dotmaster
+
+<dot:Content ContentPlaceHolderID="PageContent">
+
+    <div class="page content">
+        <h1><span class="glyphicon glyphicon-plus"></span> Nový požadavek</h1>
+
+        <!--<div class="header-row-button">
+            <dot:LinkButton class="btn btn-primary" Click="{command: ShowUserPopup(null)}" Validation.Enabled="false">
+                <h1><span class="glyphicon glyphicon-plus"></span> Nový požadavek</h1>
+            </dot:LinkButton>
+        </div>-->
+      
+        <!--<ul class="list-group">
+            <li class="list-group-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li class="list-group-item">Morbi eget libero quis metus consectetur semper.</li>
+            <li class="list-group-item">Suspendisse ullamcorper massa eget eleifend iaculis.</li>
+        </ul>-->
+
+        <table>
+            <tr>
+                <td> Popis požadavku </td>
+                <td> <dot:TextBox Text="{value: Popis}"></dot:TextBox> </td>
+            </tr>
+            <tr>
+                <td>jednotka </td> 
+                <td><dot:TextBox Text="{value: Jednotka}"></dot:TextBox></td>
+            </tr>
+            <tr>
+                <td>Cena za jednotku  </td>
+                <td><dot:TextBox Text="{value: CenaZaJednotku}" Changed="{command: Prepocitat()}" ValueType="Number" ></dot:TextBox></td>
+            </tr>
+            <tr> 
+                <td>Množství</td>
+                <td><dot:TextBox Text="{value: Mnozstvi}" Changed="{command: Prepocitat()}"></dot:TextBox></td>
+            </tr>
+            <tr>
+                <td>Celková cena  </td>
+                <td><dot:TextBox Text="{value: CelkovaCena}" ValueType="Number"></dot:TextBox></td>
+            </tr>
+            <tr>
+                <td>Měna</td>
+                <td><dot:TextBox Text="{value: Mena}" ValueType="Text"></dot:TextBox></td>
+                <td>
+                <dot:ComboBox DataSource="{value: MenaList}"
+                              SelectedValue="{value: Mena}"                              
+                               />
+                </td>            
+            <tr>
+                <td>Datum objednání  </td>
+                <td><dot:TextBox Text="{value: DatumObjednani}" ValueType="DateTime" FormatString="d.M.yyyy" Type="Date"></dot:TextBox></td>
+            </tr>
+            <tr>
+                <td>Termín dodání  </td>
+                <td><dot:TextBox Text="{value: TerminDodani}" Type="Date" ValueType="DateTime" FormatString="d.M.yyyy"></dot:TextBox></td>
+            </tr>
+            <tr>
+                <td>Dodavatel</td>                
+                <td>
+                    <dot:ComboBox DataSource="{value: Dodavatele}"  
+                                  SelectedValue="{value: DodavatelId}" 
+                                  ValueMember="ID" 
+                                  DisplayMember="Nazev" 
+                                  EmptyItemText="Vyberte dodavatele..." />                                     
+                </td>
+            <tr>
+                <td>
+                    <p>vybrano id: {{value: DodavatelId}}</p>
+                </td>
+            </tr>
+           </tr>
+        </table>
+        <!--<p>
+            <br />
+            <dot:Button Text="Přepočítat" Click="{command: Prepocitat()}"></dot:Button>
+        </p>-->
+        <p>
+            <br />
+            <dot:Button Text="Save" Click="{command: PozadavekSave()}"></dot:Button>
+        </p>
+
+        <div>
+            <p>{{value: Message}}.</p> 
+        </div>
+
+
+
+
+    </div>
+
+
+
+</dot:Content>
+

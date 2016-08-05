@@ -1,0 +1,9 @@
+﻿@viewModel Pozadavky.ViewModels.SignViewModel, Pozadavky
+@masterPage Views/app.dotmaster
+
+<dot:Content ContentPlaceHolderID="PageContent">
+
+<h1>Podpis požadavků</h1>
+
+</dot:Content>
+

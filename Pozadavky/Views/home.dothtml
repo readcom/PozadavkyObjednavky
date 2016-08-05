@@ -1,0 +1,65 @@
+﻿@viewModel Pozadavky.ViewModels.HomeViewModel, Pozadavky
+@masterPage Views/app.dotmaster
+
+
+<dot:Content ContentPlaceHolderID="PageContent">
+    <div class="form-group wrapper">
+        <h1>Celkový přehled požadavků</h1>
+        <p>
+            Vypsat požadavky pouze pro
+            <dot:RadioButton Checked="{value: CurrentUserOnly}" CheckedValue="{value: true}"
+                             GroupName="RadioGroup" Text=" aktuálního uživatele" Changed="{command: ChangeCurrentUser()}" />
+
+            <dot:RadioButton Checked="{value: CurrentUserOnly}" CheckedValue="{value: false}"
+                             GroupName="RadioGroup" Text=" všechny" Changed="{command: ChangeCurrentUser()}" />
+        </p>
+
+        <dot:GridView DataSource="{value: ItemsListGridView}" class="table table-bordered">
+            <Columns>
+                <dot:GridViewTextColumn ValueBinding="{value: CelkovyPopis}" HeaderText="Popis" AllowSorting="true" />
+                <dot:GridViewTextColumn ValueBinding="{value: Vlozil}" HeaderText="Vložil" AllowSorting="true" />
+                <dot:GridViewTextColumn ValueBinding="{value: Datum}" HeaderText="Datum" FormatString="d" AllowSorting="true" />
+
+                <!--tlacitko pro editaci pozadavku-->
+                <dot:GridViewTemplateColumn HeaderText="">
+                    <ContentTemplate>
+                        <dot:RouteLink RouteName="PozadavkyList" Param-Id="{value: ID}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </dot:RouteLink>
+                    </ContentTemplate>
+                </dot:GridViewTemplateColumn>
+                <!--tlacitko pro smazani pozadavku-->
+                <dot:GridViewTemplateColumn HeaderText="">
+                    <ContentTemplate>
+                        <dot:LinkButton Click="{command: _parent.DeleteItem(ID)}">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </dot:LinkButton>
+                    </ContentTemplate>
+                </dot:GridViewTemplateColumn>
+            </Columns>
+        </dot:GridView>
+
+        <dot:DataPager DataSet="{value: ItemsListGridView}" class="pagination" />
+
+
+
+
+
+
+        <div class="text-center">
+            <br />
+            <dot:Button class="btn btn-primary" Text="Nová skupina požadavků" Click="{command: NewItemEdit()}" />
+        </div>
+        <div class="form" style="width: 500px; margin: auto">
+            <div class="form-group">
+                <label Visible="{value: NewItemVisibility}" class="control-label">Popis požadavku</label>
+                <div>
+                    <dot:TextBox Visible="{value: NewItemVisibility}" class="form-control" Text="{value: ItemPopis}" />                    
+                    <br />
+                    <dot:Button Visible="{value: NewItemVisibility}" class="btn btn-primary" Text="Save" Click="{command: NewItemAdd()}" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</dot:Content>

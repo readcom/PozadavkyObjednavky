@@ -1,0 +1,13 @@
+﻿
+.wrapper {
+  padding: 20px;
+  width: 70%;
+  margin: auto;
+}
+
+.ButtonSmall
+{
+    font-weight: 700;
+    padding: 2px 6px;
+    font-size: 10px; 
+}

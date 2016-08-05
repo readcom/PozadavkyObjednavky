@@ -1,0 +1,126 @@
+﻿@viewModel Pozadavky.ViewModels.ManagerViewModel, Pozadavky
+@masterPage Views/app.dotmaster
+
+<dot:Content ContentPlaceHolderID="PageContent">
+
+
+   
+
+
+    <div class="form-group wrapper">
+        <!--<label class="control-label" for="form-group-input">My label</label>-->
+        <!--<input type="text" class="auto-style1" id="form-group-input" placeholder="My label">-->
+        <!--<dot:GridView DataSource="{value: Dodavatel}">
+            <Columns>
+                <dot:GridViewTextColumn ValueBinding="{value: ID}" HeaderText="ID" />
+                <dot:GridViewTextColumn ValueBinding="{value: Nazev}" HeaderText="Name" />
+            </Columns>
+        </dot:GridView>-->
+        <!--<dot:TextBox Text="" />-->
+        <h1>Správa požadavků</h1>
+        <p>
+            Vypsat požadavky pouze pro
+            <dot:RadioButton Checked="{value: CurrentUserOnly}" CheckedValue="{value: true}"
+                             GroupName="RadioGroup" Text=" aktuální skupinu" Changed="{command: ChangeCurrentUser()}" />
+
+            <dot:RadioButton Checked="{value: CurrentUserOnly}" CheckedValue="{value: false}"
+                             GroupName="RadioGroup" Text=" všechny" Changed="{command: ChangeCurrentUser()}" />
+        </p>
+
+        <p>
+            <h3>
+                Požadavek: {{value: ItemPopis}}  
+                <!--<dot:LinkButton Click="{command: EditPozadavekName()}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </dot:LinkButton>-->
+                <dot:Button Click="{command: EditPozadavekName()}"
+                    class="btn btn-primary ButtonSmall" Text="Edit" >
+                </dot:Button>
+            </h3>
+            <dot:TextBox Visible="{value: EditItemName}" class="form-control" Text="{value: ItemPopis}" />
+            <br />
+            <dot:Button Visible="{value: EditItemName}" class="btn btn-primary" Text="Save" Click="{command: EditItemPopis()}" />
+        </p>
+
+        <p>Pocet pozadavku: {{value: SeznamPozadavkuGV.TotalItemsCount}}</p>
+        <br />
+        <p Visible="{value: NothingFound}"> Nenalezeny žádné požadavky! </p>
+
+        
+        <dot:GridView DataSource="{value: SeznamPozadavkuGV}" class="table table-bordered">
+            <Columns>
+                <!--<dot:GridViewTextColumn ValueBinding="{value: ID}" HeaderText="ID" />-->
+                <dot:GridViewTextColumn ValueBinding="{value: Popis}" HeaderText="Jméno" AllowSorting="true" />
+                <dot:GridViewTextColumn ValueBinding="{value: CelkovaCena}" HeaderText="Celková cena" AllowSorting="true" />
+                <dot:GridViewTextColumn ValueBinding="{value: Vlozil}" HeaderText="Vložil" AllowSorting="true" />
+                <dot:GridViewTextColumn ValueBinding="{value: Datum}" HeaderText="Datum" FormatString="d" AllowSorting="true" />
+                <dot:GridViewTextColumn ValueBinding="{value: DodavatelName}" HeaderText="Dodavatel" AllowSorting="true" />
+                <!--tlacitko pro editaci pozadavku-->
+                <dot:GridViewTemplateColumn HeaderText="edit">
+                    <ContentTemplate>
+                        <dot:RouteLink RouteName="PozadavekEdit" Param-Id="{value: ID}">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </dot:RouteLink>
+                    </ContentTemplate>
+                </dot:GridViewTemplateColumn>
+                <!--tlacitko pro smazani pozadavku-->
+                <dot:GridViewTemplateColumn HeaderText="delete">
+                    <ContentTemplate>
+                        <dot:LinkButton Click="{command: _parent.DeletePozadavek(ID)}">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </dot:LinkButton>
+                    </ContentTemplate>
+                </dot:GridViewTemplateColumn>
+            </Columns>
+        </dot:GridView>
+
+        <dot:DataPager DataSet="{value: SeznamPozadavkuGV}" class="pagination" />
+        <br />
+
+        <p> ItemId = {{value: ItemId}}</p>
+        
+        <dot:RouteLink RouteName="PozadavekNew" Param-Id="{value: ItemId}"
+             class="btn btn-primary" Text="Nový požadavek">
+        </dot:RouteLink>
+        
+        <!--<br /><br />
+        <dot:RouteLink RouteName="PozadavekNew" Param-Id="{value: ItemId}">
+            <span class="glyphicon glyphicon-edit"></span>
+        </dot:RouteLink>
+        
+        <br /><br />
+        
+        <dot:Button Click="{command: NewPozadavek()}"
+                    class="btn btn-primary" Text="Nový požadavek"></dot:Button>-->
+
+
+
+
+        <!--<dot:GridView DataSource="{value: SeznamPozadavku}">
+            <Columns>
+                <dot:GridViewTextColumn ValueBinding="{value: ID}" HeaderText="ID" />
+                <dot:GridViewTextColumn ValueBinding="{value: Popis}" HeaderText="Name" />
+                <dot:GridViewTextColumn ValueBinding="{value: Vlozil}" HeaderText="Vlozil" />
+            </Columns>
+        </dot:GridView>
+
+        <dot:Repeater DataSource="{value: SeznamPozadavku}">
+            <ItemTemplate>
+                <h2>{{value: Popis}}</h2>
+
+                <p>ID:  {{value: ID}}</p>
+                <p>{{value: CelkovaCena}} {{value: Mena}}</p>
+
+                <p>{{value: Vlozil}}</p>
+                <p class="text-uppercase text-muted">
+                  Založeno dne: <dot:Literal Text="{{value: Datum}}" FormatString="d" ></dot:Literal>
+                </p>
+
+
+            </ItemTemplate>
+        </dot:Repeater>-->
+    </div>
+</dot:Content>
+
+
+
